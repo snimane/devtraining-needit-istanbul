@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_58872_needit.GetCategory</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>GetCategory</name>
+        <script><![CDATA[var GetCategory = Class.create();
+GetCategory.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	
+	
+	getCat: function() {
+		
+		var result = this.newItem("result");
+		var fieldName=this.getParameter('sysparm_fieldname');
+		var dependentValue=this.getParameter('sysparm_dependant_value');
+		
+		var cat = new GlideRecord("sys_choice");
+		//cat.addEncodedQuery("name=x_58872_needit_needit^element=u_sub^dependent_value=hr1");
+		cat.addQuery('name','x_58872_needit_needit');
+		cat.addQuery('element',fieldName);
+		cat.addQuery('dependent_value',dependentValue);
+		cat.query();
+		
+		if(cat.hasNext()){
+			
+			result.setAttribute("message", "non");
+			
+			while(cat.next()){
+				
+				this._addFavorite(cat.getValue('value'), cat.getValue('label'));
+			    
+			}
+			
+			
+			
+			
+		}else{
+			
+			result.setAttribute("message", "yes");
+		}
+		
+	},
+	
+	_addFavorite : function(value, label) {
+		var favs = this.newItem("favorite");
+		favs.setAttribute("value", value);
+		favs.setAttribute("label", label);
+	},
+	
+	
+	
+	
+	
+	type: 'GetCategory'
+	
+	
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-05-13 01:31:14</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>ee70208cdb723200b637f7fdbf96193d</sys_id>
+        <sys_mod_count>25</sys_mod_count>
+        <sys_name>GetCategory</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_script_include_ee70208cdb723200b637f7fdbf96193d</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-05-16 19:35:49</sys_updated_on>
+    </sys_script_include>
+</record_update>

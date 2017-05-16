@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
-    <element audit="true" extends="task" label="NeedIt" max_length="40" name="x_58872_needit_needit" sizeclass="3" type="collection">
+    <element audit="true" extends="task" label="NeedIt" max_length="40" name="x_58872_needit_needit" sizeclass="4" type="collection">
         <element label="New field 1" max_length="40" name="new_field_1" type="string"/>
         <element label="Requested for" mandatory="true" max_length="32" name="u_requested_for" reference="sys_user" type="reference"/>
         <element attributes="edge_encryption_enabled=true" choice="3" default="legal" label="Request type" mandatory="true" max_length="40" name="u_request_type" type="string">
@@ -8,6 +8,17 @@
                 <element label="Human Resources" sequence="0" value="hr"/>
                 <element label="Facilities" sequence="1" value="facilities"/>
                 <element label="Legal" sequence="2" value="legal"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Sub category" max_length="40" name="u_sub" type="string">
+            <choice>
+                <element dependent_value="hr1" label="HR1" value="4"/>
+                <element dependent_value="hr2" label="HR2" value="5"/>
+                <element dependent_value="hr1" label="HR3" value="6"/>
+                <element label="none" value="0"/>
+                <element dependent_value="facilities1" label="sub1" sequence="0" value="1"/>
+                <element dependent_value="facilities1" label="sub2" sequence="1" value="2"/>
+                <element dependent_value="facilities1" label="sub3" sequence="2" value="3"/>
             </choice>
         </element>
         <element attributes="edge_encryption_enabled=true" choice="3" default="legal1" label="What needed" mandatory="true" max_length="40" name="u_what_needed" type="string">

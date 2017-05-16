@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_58872_needit.Myclass</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>Myclass</name>
+        <script><![CDATA[var Myclass = Class.create();
+Myclass.prototype = {
+	initialize: function() {
+	},
+	
+	type: 'Myclass',
+	
+	getSubCat:function(){
+		
+		var val = this.newItem("valuNo");
+		var fieldName=this.getParameter('sysparm_category');
+		var dependentValue=this.getParameter('sysparm_field_char');
+		var result="yes";
+		
+		
+		var gp = new GlideRecord('sys_choice');
+ 			gp.addQuery('name', 'NeedIt');//x_58872_needit_needit
+			gp.addQuery('element', fieldName);
+			gp.addQuery('inactive', 'false');
+			gp.addQuery('dependent_value', dependentValue);
+			gp.query();
+		if (gp.hasNext())
+		
+		if (gp.hasNext())
+			{
+			result="no";
+		}
+		else
+			{
+			result="yes";
+		}
+		return result;
+		
+	},
+	
+	
+	
+	
+	
+	
+	
+	
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-05-09 05:17:21</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>f1dc64b2dbae7200b637f7fdbf96191a</sys_id>
+        <sys_mod_count>25</sys_mod_count>
+        <sys_name>Myclass</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_script_include_f1dc64b2dbae7200b637f7fdbf96191a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-05-13 00:22:13</sys_updated_on>
+    </sys_script_include>
+</record_update>
